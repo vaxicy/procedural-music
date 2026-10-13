@@ -26,7 +26,7 @@ Both demos are clean renders (no noise beds). Click to play or download:
 | Demo | Preset | Mode | Length | Size |
 |---|---|---|---|---|
 | [demo-y2k-digital-loop-21s.mp3](examples/demo-y2k-digital-loop-21s.mp3) | `y2k-digital` | seamless loop, 8 bars | 0:21 | 0.47 MB |
-| [demo-lofi-minimal-full-176s.mp3](examples/demo-lofi-minimal-full-176s.mp3) | `lofi-minimal` | full arrangement, 64 bars | 2:55 | 4.02 MB |
+| [demo-lofi-minimal-loop-43s.mp3](examples/demo-lofi-minimal-loop-43s.mp3) | `lofi-minimal` | seamless loop, 16 bars | 0:43 | 0.98 MB |
 
 Regenerate them, byte for byte, with the commands in [`examples/README.md`](examples/README.md). That is not a figure of speech: the committed MP3s re-render to the **same SHA-256**, because the seed pins the noise beds and the reverb impulse response.
 
@@ -261,8 +261,8 @@ Measured on this repo's own demos, single-threaded on a laptop CPU:
 
 | Render | Length | Wall time |
 |---|---|---|
-| `y2k-digital --loop --bars 8` | 0:21 | 4.2 s |
-| `lofi-minimal --full` | 2:55 | 37.2 s |
+| `y2k-digital --loop --bars 8` | 0:21 | 4.1 s |
+| `lofi-minimal --loop --bars 16` | 0:43 | 9.4 s |
 
 Roughly 4–5× faster than real time. No GPU, no network, no per-render cost.
 

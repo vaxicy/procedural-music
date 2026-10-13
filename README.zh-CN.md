@@ -26,7 +26,7 @@
 | 文件 | 预设 | 模式 | 时长 | 体积 |
 |---|---|---|---|---|
 | [demo-y2k-digital-loop-21s.mp3](examples/demo-y2k-digital-loop-21s.mp3) | `y2k-digital` | 无缝循环 8 小节 | 0:21 | 0.47 MB |
-| [demo-lofi-minimal-full-176s.mp3](examples/demo-lofi-minimal-full-176s.mp3) | `lofi-minimal` | 完整编曲 64 小节 | 2:55 | 4.02 MB |
+| [demo-lofi-minimal-loop-43s.mp3](examples/demo-lofi-minimal-loop-43s.mp3) | `lofi-minimal` | 无缝循环 16 小节 | 0:43 | 0.98 MB |
 
 按 [`examples/README.md`](examples/README.md) 里的命令重新渲染，得到的 MP3 与仓库里这两个文件**逐字节相同**（SHA-256 一致）。这不是修辞：seed 固定了噪声床和混响脉冲响应，所以同一 seed 就是同一个文件。
 
@@ -261,8 +261,8 @@ procedural-music/
 
 | 渲染 | 时长 | 耗时 |
 |---|---|---|
-| `y2k-digital --loop --bars 8` | 0:21 | 4.2 秒 |
-| `lofi-minimal --full` | 2:55 | 37.2 秒 |
+| `y2k-digital --loop --bars 8` | 0:21 | 4.1 秒 |
+| `lofi-minimal --loop --bars 16` | 0:43 | 9.4 秒 |
 
 大约是实时速度的 4–5 倍。不需要 GPU，不联网，每次渲染零成本。
 
