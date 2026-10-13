@@ -1,0 +1,14 @@
+{
+  "name": "procedural-music",
+  "description": "Procedural music generation as pure Python DSP, packaged as an Agent Skill.",
+  "owner": {
+    "name": "vaxicy"
+  },
+  "plugins": [
+    {
+      "name": "procedural-music",
+      "source": "./",
+      "description": "Generate background music from scratch: six style presets, reverb-tail-folded seamless loops, iterative Welch-PSD band balancing, and a mandatory loop-seam self-check."
+    }
+  ]
+}

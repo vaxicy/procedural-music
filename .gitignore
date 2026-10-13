@@ -1,0 +1,17 @@
+# 渲染输出 | Rendered audio output — not part of the skill source
+out/
+.pm-test/
+*.mp3
+
+# Intermediate renders — WAVs are large and regenerable from a seed
+# (keep a file by force-adding it: git add -f examples/demo.wav)
+*.wav
+
+# Python
+__pycache__/
+*.pyc
+
+# CodeBuddy / editor internal data
+.codebuddy/
+.vscode/
+.idea/
