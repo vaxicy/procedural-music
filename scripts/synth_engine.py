@@ -430,10 +430,17 @@ def render(v, verbose=True):
 
         if b % chord_bars == 0:
             dur = bar * chord_bars + 1.2
-            padsend.append((pad_chord(ch, dur, atk=v.get('pad_atk', 0.85), rel=1.1,
-                                      lfo_hz=v.get('pad_lfo', 0.11)), t0))
-            shimsend.append((shimmer_chord(ch, dur,
-                                           atk=v.get('pad_atk', 0.85) * 1.3, rel=1.2), t0))
+            # `pad` / `shim` are per-section switches (default on) so an
+            # arrangement can open dry and let the sustained bed enter later.
+            # `pad_rel` / `shim_rel` override the fixed release length.
+            if s.get('pad', True):
+                padsend.append((pad_chord(ch, dur, atk=v.get('pad_atk', 0.85),
+                                          rel=v.get('pad_rel', 1.1),
+                                          lfo_hz=v.get('pad_lfo', 0.11)), t0))
+            if s.get('shim', True):
+                shimsend.append((shimmer_chord(ch, dur,
+                                               atk=v.get('pad_atk', 0.85) * 1.3,
+                                               rel=v.get('shim_rel', 1.2)), t0))
 
         if s.get('bass'):
             tr.add(sub_bass(ch[0] - 12, bar * 0.96, amp=v.get('bass_amp', 0.34)), t0)
