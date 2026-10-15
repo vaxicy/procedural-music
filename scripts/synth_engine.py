@@ -429,7 +429,9 @@ def render(v, verbose=True):
         s = arr[b]
 
         if b % chord_bars == 0:
-            dur = bar * chord_bars + 1.2
+            # `pad_extra` is how far the sustained bed rings past its chord
+            # block; lower it for a tighter, less overlapping pad.
+            dur = bar * chord_bars + v.get('pad_extra', 1.2)
             # `pad` / `shim` are per-section switches (default on) so an
             # arrangement can open dry and let the sustained bed enter later.
             # `pad_rel` / `shim_rel` override the fixed release length.
