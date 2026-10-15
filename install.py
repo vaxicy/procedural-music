@@ -248,7 +248,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if not args.uninstall and not args.dry_run and results:
         print("next: ask your agent for a track, or render one directly:")
-        print("  python scripts/render_track.py --preset lofi-minimal --out ./out --loop --bars 16 --clean --qa")
+        print("  python scripts/render_track.py --preset lofi-minimal --out ./out --loop --bars 16 --qa")
         print("restart the host so it rescans its skills folder. Codex can also toggle the skill with")
         print("[[skills.config]] in config.toml; the bundled agents/openai.yaml supplies its display name.")
     return 0

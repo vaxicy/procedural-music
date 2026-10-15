@@ -309,14 +309,16 @@ def list_presets():
     return [(k, v['label'], v['blurb']) for k, v in PRESETS.items()]
 
 
-def build(name, bars=None, loop=True, clean=False, **overrides):
+def build(name, bars=None, loop=True, clean=True, **overrides):
     """Turn a preset into a renderable spec.
 
     name     preset key, e.g. 'y2k-dreamy'
     bars     loop length in bars (default 24). Rounded to whole chord cycles.
     loop     True -> seamless loop render, False -> full-length arrangement.
-    clean    drop all three noise beds and use seam_ramp=0. This is the setting
-             to ship for a "pure / seamless" deliverable.
+    clean    **default True** — drop all three noise beds (air / vinyl / hiss)
+             and use seam_ramp=0, i.e. a pure, noiseless deliverable. Pass
+             clean=False to opt back into the noise beds for lo-fi / tape
+             character (the CLI exposes this as --noise).
     """
     p = PRESETS[name]
     v = dict(p['base'])

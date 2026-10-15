@@ -86,9 +86,9 @@ continuous across the junction on its own. Adding a fade-in/fade-out at the
 boundaries punches a hole in the middle of that continuity.
 
 **Fix:** `seam_ramp` defaults to `0.0` when `loop=True`, and to 12 ms when
-`loop=False`. Non-looping renders also get a musical 5 s fade-out. The
-"pure / seamless" shipping variant additionally sets all three noise beds to
-`0.0` — see `presets.build(..., clean=True)`.
+`loop=False`. Non-looping renders also get a musical 5 s fade-out. The three
+noise beds are set to `0.0` by default — see `presets.build(..., clean=True)`,
+which is the default path; `clean=False` (CLI `--noise`) opts back in.
 
 ---
 

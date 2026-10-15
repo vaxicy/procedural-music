@@ -128,11 +128,11 @@ pip install -r requirements.txt     # numpy
 ```bash
 python scripts/render_track.py --list
 
-# seamless loop, clean (no noise beds), self-checked
-python scripts/render_track.py --preset y2k-digital --out ./out --loop --bars 8 --clean --qa
+# seamless loop (clean / noiseless by default), self-checked
+python scripts/render_track.py --preset y2k-digital --out ./out --loop --bars 8 --qa
 
 # full arrangement: intro / build / main / bridge / main / outro
-python scripts/render_track.py --preset lofi-minimal --out ./out --full --clean --qa
+python scripts/render_track.py --preset lofi-minimal --out ./out --full --qa
 
 # reproducible, specific length
 python scripts/render_track.py --preset ambient-drift --out ./out --bars 32 --seed 7
@@ -147,7 +147,8 @@ python scripts/seam_focus.py out/track.wav
 | `--loop` / `--full` | Seamless loop (default) or the full-length arrangement |
 | `--bars N` | Loop length, rounded **up** to whole chord cycles so the harmony still matches when it wraps |
 | `--seed N` | Byte-reproducible render. Without it, noise beds and the reverb IR are random each run |
-| `--clean` | Drops all noise beds and loop fades — the variant to ship for a pure, seamless deliverable |
+| `--noise` | Keep the noise beds (air / vinyl / hiss). Clean output is the **default**; use this only for lo-fi / tape character |
+| `--clean` | Explicit form of the default clean output, kept for backward compatibility |
 | `--qa` | Runs the self-check on **every file written** |
 | `--no-wav` / `--no-mp3` | Keep only one of the two outputs |
 | `--artist` / `--album` | ID3 tags |
@@ -175,7 +176,7 @@ Most briefs are a small delta from one of these — `bpm`, `prog`, `lead_kind`, 
 `--qa` on a real render:
 
 ```
-$ python scripts/render_track.py --preset chiptune-playful --out ./out --bars 8 --seed 1 --clean --qa
+$ python scripts/render_track.py --preset chiptune-playful --out ./out --bars 8 --seed 1 --qa
 
 === chiptune-playful_loop_16s.mp3 ===
 

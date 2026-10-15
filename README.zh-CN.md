@@ -128,11 +128,11 @@ pip install -r requirements.txt     # numpy
 ```bash
 python scripts/render_track.py --list
 
-# 无缝循环 + clean（去掉噪声床）+ 自检
-python scripts/render_track.py --preset y2k-digital --out ./out --loop --bars 8 --clean --qa
+# 无缝循环（默认即纯净版 / 无噪声床）+ 自检
+python scripts/render_track.py --preset y2k-digital --out ./out --loop --bars 8 --qa
 
 # 完整长度：前奏 / 推进 / 主歌 / 间奏 / 主歌 / 尾奏
-python scripts/render_track.py --preset lofi-minimal --out ./out --full --clean --qa
+python scripts/render_track.py --preset lofi-minimal --out ./out --full --qa
 
 # 可复现 + 指定长度
 python scripts/render_track.py --preset ambient-drift --out ./out --bars 32 --seed 7
@@ -147,7 +147,8 @@ python scripts/seam_focus.py out/track.wav
 | `--loop` / `--full` | 无缝循环（默认）或完整长度编曲 |
 | `--bars N` | 循环小节数，会自动**向上**取整到整数个和弦周期，这样绕回来时和声仍然对得上 |
 | `--seed N` | 渲染结果可按字节复现；不传的话，噪声床和混响脉冲响应每次都是随机的 |
-| `--clean` | 去掉所有噪声床和循环淡入淡出 —— 要交「纯净无缝」版本就加这个 |
+| `--noise` | 保留三路噪声床（air / vinyl / hiss）。**默认就是纯净版**；只有确实要 lo-fi / 磁带质感才加 |
+| `--clean` | 默认纯净版的显式写法，仅为向后兼容保留 |
 | `--qa` | 对**写出的每一个文件**跑自检 |
 | `--no-wav` / `--no-mp3` | 只保留其中一种输出 |
 | `--artist` / `--album` | 写 ID3 标签 |
@@ -175,7 +176,7 @@ python scripts/seam_focus.py out/track.wav
 `--qa` 在一次真实渲染里的输出：
 
 ```
-$ python scripts/render_track.py --preset chiptune-playful --out ./out --bars 8 --seed 1 --clean --qa
+$ python scripts/render_track.py --preset chiptune-playful --out ./out --bars 8 --seed 1 --qa
 
 === chiptune-playful_loop_16s.mp3 ===
 

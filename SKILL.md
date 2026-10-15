@@ -14,6 +14,10 @@ stacks with hand-written envelopes, effects are FFT convolution reverb and a
 ping-pong delay, and loops are made seamless by folding the reverb tail back
 onto the head.
 
+**Output is clean by default.** The three noise beds (air / vinyl / hiss) are
+switched off, so a fresh render is pure and noiseless; pass `--noise` only when
+a brief genuinely wants lo-fi / tape character.
+
 There is **no** music model, sample library, soundfont or DAW involved. That
 matters for three reasons: the output is unambiguously licence-clean, it is
 fully reproducible from a seed, and any parameter the user dislikes can be
@@ -62,8 +66,8 @@ the single most common failure mode of this skill.
    *Adapting a preset* below) rather than starting from a blank file.
 2. **Render.**
    ```bash
-   # seamless loop, clean (no noise beds), verified
-   python scripts/render_track.py --preset y2k-digital --out ./out --loop --clean --qa
+   # seamless loop (clean / noiseless by default), verified
+   python scripts/render_track.py --preset y2k-digital --out ./out --loop --qa
 
    # full-length arrangement with intro / build / main / bridge / main / outro
    python scripts/render_track.py --preset lofi-minimal --out ./out --full --qa
@@ -133,7 +137,8 @@ by path, so run them from the skill directory (or with `scripts/` on
 
 | Flag | Effect |
 |---|---|
-| `--clean` | Drops all three noise beds and the loop fades. This is the variant to ship for a "pure / seamless" deliverable. |
+| `--noise` | Opt **back in** to the three noise beds (air / vinyl / hiss). Clean output is the **default**; use this only for lo-fi / tape character. |
+| `--clean` | Explicit form of the default clean output; kept for backward compatibility. |
 | `--bars N` | Loop length. Rounded **up** to the next whole chord cycle automatically. |
 | `--seed N` | Makes the render byte-reproducible. Without it, noise beds and the reverb IR are random each run. |
 | `--no-wav` | MP3 only (removes the intermediate WAV). |

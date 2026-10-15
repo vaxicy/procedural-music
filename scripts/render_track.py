@@ -3,11 +3,15 @@
 """
 Render a procedural music track from a style preset.
 
+Output is **clean by default** (no air / vinyl / hiss noise beds). Pass
+`--noise` to opt back into the noise beds for lo-fi / tape character.
+
 Examples
 --------
   python scripts/render_track.py --list
-  python scripts/render_track.py --preset y2k-digital --out ./out --loop --clean
+  python scripts/render_track.py --preset y2k-digital --out ./out --loop
   python scripts/render_track.py --preset lofi-minimal --out ./out --bars 32 --seed 7
+  python scripts/render_track.py --preset lofi-minimal --out ./out --loop --bars 16 --noise
   python scripts/render_track.py --preset y2k-dreamy --out ./out --full --qa
 """
 from __future__ import annotations
@@ -35,8 +39,12 @@ def main():
     ap.add_argument('--bars', type=int, default=24,
                     help='loop length in bars (default 24, rounded up to whole chord cycles)')
     ap.add_argument('--seed', type=int, default=None, help='RNG seed for reproducibility')
+    ap.add_argument('--noise', action='store_true',
+                    help='keep the noise beds (air / vinyl / hiss). Clean output is '
+                         'the DEFAULT; pass this to opt back in for lo-fi character.')
     ap.add_argument('--clean', action='store_true',
-                    help='drop all noise beds and loop fades (pure/seamless deliverable)')
+                    help='(default) explicit form of the clean output; kept for '
+                         'backward compatibility.')
     ap.add_argument('--name', default=None, help='output file stem (default: preset + duration)')
     ap.add_argument('--seed-demo', dest='seed_demo', type=int, default=None,
                     help=argparse.SUPPRESS)
@@ -62,7 +70,8 @@ def main():
         E.set_seed(a.seed)
 
     loop = not a.full
-    v = P.build(a.preset, bars=a.bars, loop=loop, clean=a.clean)
+    clean = not a.noise
+    v = P.build(a.preset, bars=a.bars, loop=loop, clean=clean)
 
     st, n = E.render(v, verbose=not a.quiet)
 

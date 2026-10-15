@@ -1,4 +1,4 @@
 interface:
   display_name: "Procedural Music"
   short_description: "Generate background music as pure Python DSP — seamless loops, band auto-balance, seam QA"
-  default_prompt: "Use $procedural-music to deliver a background track: pick the closest preset, render it with --loop --clean --qa, run the seam tests, and report the file, seed and QA verdict."
+  default_prompt: "Use $procedural-music to deliver a background track: pick the closest preset, render it with --loop --qa (output is clean by default — add --noise only for lo-fi character), run the seam tests, and report the file, seed and QA verdict."
